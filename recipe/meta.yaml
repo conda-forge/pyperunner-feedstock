@@ -11,12 +11,12 @@ source:
 
 build:
   noarch: python
-  number: 0
+  number: 1
   script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
   host:
-    - python >=3.7
+    - python {{ python_min }}
     - pip
   run:
     - coloredlogs >=15.0
@@ -25,10 +25,12 @@ requirements:
     - joblib >=0.17.0
     - networkx >=2.5
     - pydot >=1.4.1
-    - python >=3.7
+    - python >={{ python_min }}
     - pyyaml >=5.4.1
 
 test:
+  requires:
+    - python {{ python_min }}
   imports:
     - pyperunner
     - pyperunner.dag
